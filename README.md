@@ -14,6 +14,14 @@ This can be used to disclose encrypted session information, and often to bypass 
 
 As always, this tool should only be used on systems you own and/or have permission to probe!
 
+## Installation
+
+Download from [releases](https://github.com/liamg/pax/releases), or install with Go:
+
+```bash
+go get -u github.com/liamg/pax/cmd/pax
+```
+
 ## Example Usage
 
 If you find a suspected oracle, where the encrypted data is stored inside a cookie named `SESS`, you can use the following:
