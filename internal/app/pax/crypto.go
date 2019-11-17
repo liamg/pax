@@ -33,7 +33,10 @@ func encrypt(input, key []byte) ([]byte, error) {
 	blockCount := len(plaintext) / aes.BlockSize
 
 	for i := 1; i < blockCount; i++ {
-		xored := xor(ciphertext[((i)*aes.BlockSize):((i+1)*aes.BlockSize)], plaintext[i*aes.BlockSize:((i+1)*aes.BlockSize)])
+		xored := xor(
+			ciphertext[((i)*aes.BlockSize):((i+1)*aes.BlockSize)],
+			plaintext[i*aes.BlockSize:((i+1)*aes.BlockSize)],
+		)
 		block.Encrypt(ciphertext[((i+1)*aes.BlockSize):((i+2)*aes.BlockSize)], xored)
 	}
 
