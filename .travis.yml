@@ -19,7 +19,8 @@ jobs:
           - bin/linux/pax-linux-amd64
           - bin/windows/pax-windows-amd64.exe
         api_key:
-          secure: "Cwsft0N+qiZjJl1droUbr6J/ktIy94hkhzNfeqvkarIXOU3EsetDl0W2T9j+tMRj7CRoQ0L+LJBFsiUEJ/zNwo86wplIsKdO618IfW4mU/uyxBNDEZxmX33lVE/XXhAfzUEmSj1XjlZDZIEo1YQZC+jaM7mGhPHnBqQJxL01m64P0GN47EvAws9I1TNo7GWjwqSBFS3plCYvaRUNurWJchEoNFAFr+0dfcdRskFljTdE8GUM41BVNrJhIwp2XyFRn/STmOx+qeukmBURpLWTZ1c3+0jTiH5lMp9HVIb2BZvvHBEZ517+YTXV8Deuvzq3xqsER+onzSxAhowF+ZKbpQoVDRpgYqiwaCX/dNF0YNb20Lhi2YB8b9Y/DBKNNSNeSrq/7oJG+w2v6sAZOT5LNKZdDNYKiAxtRPU01XFpQ/SOxY2BYW1yTsN398NJ/UUZh4wLFs/x7BkfiubZlv0+N/EwnfT8BHiWzetCiHOgCx5Qk02CyJ1DYiMlGrwKu5ehUWbgu2eVpxGK8xzp9MMOkxERfghxP2/afeUyasgEClLqJyHRBShYWwtbaFoDklYsx78ebQ3o4HP1vdA8EORgIGHOi2dILplL3DXT2AXHgRe43h9zMsA2/jGxyKrMe2LjY+j5uBRk7h60BgImhKgvZMi5A9Pg3Hda9VcpUybvGtc="
+          secure: "GvKzFEz6UyQzjHwtnRbzURsckrxXnkIK1uT+pZxcIBs7nQy6WNIVM2Om86LQ8G5FbETuM7GOi0NYwpMLZEq5iM9fhZzqeMrbewj4YtvjxPRGu7XXbMyJX6Wk/bwMRfPqclQM/dan1wKwu01VObiTU282xy9Eb5wsVEmMRrWBUO/ur+NkEM9DQqAgMcW3f8KrclS0Ikx21b1fxFMZnyli+Aeq01e94qXB6G7DbRQhrbb8KrYcry8SA0n0IceFCcBNfcdrHjWmfFHI54MmDBjBpMAvIzS6Tx6ypr6MtjspcrMqCFUTL52nE53jmase+amOmYcTxPA6cqSgq43NCy9E0NSRovExrx6m6XOCNnZYXkiyCsFrgc+x51pe1beiJQ9djRX/j32ACrbaBbnMz5W21YHVGAOIrmm6w+O9DOAecDOEU68lgXTvQzLX8JgeRgwKVwpY1U1Ua4WEm7neLTgbjWdFOQ5Gh9JRpW0FSuXKA/slNAjy0oflYyJ1vdKVPrMZR1qF2RijaxRyatKfEljwobDyx0fSduZQSJCDUln2fm1Qb0HOgKmKCVim3RjgA2qmQrYAdHtjBpIWlvV0NckBakqOiChF70rFqge3aXImoWFVl9lWZsDsKxDd0RpvltXLo1Q4KXfY+j1j6SKHa18HTmPNDg6TWUZcpcYP0YOiNTw="
         on:
           repo: liamg/pax
           tags: true
+
