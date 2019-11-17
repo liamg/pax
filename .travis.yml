@@ -1,6 +1,9 @@
 language: go
 go:
   - 1.13
+env:
+  global:
+  - secure: "0b4ONlNY58YkyQ8ykvmm+MNvOh58Iq/mkJJPyf2dI2fnzNWjtHwjIcQ+BmOjbUYm4MOmp1p8LvXEwkm8s/2gjuwHUQyoPVmGc7YnsG6a57JPou+BFCtXV0yP1Enumz2Ms5/fVlFsBv1aXdqgbqghIRKUUg33Skx9zgZSd0oWhIKBbg7HU8/asrB7zteBnMeqTPffSj4+cIJ2i0dDD2aXTbB2KN+oBSngg2POxXxQQNy+FQZXqSRe/OLc4etT8/TBZL7z4PnYdhedXzUzrLb0W6GkVCUsblD3yB/l+adfbvglezbRQst3J9u0AdUsbJMzsTNowO+5qjmUApoJ4WPZifjsSwdU1r8tSMVhS4kIiUIIwV7ExDeYDj9FwNivEArAMtvhh3YqV+oCblXXl/NROxv+LwkwN1qDqjoRsd4n/43WVkhWMOcQSjiVQ00P+HdPpOSKS+AYhKESnnVnuMkpSOeeWLQIwyy2VzYRLUstc2mX0JG/3FUEhrNF9uTESEJwIikwctfWvm5Ra9Wr0nDKg7rzn4cuFpRLawvOD9kHgVEpSimWa/0LgOXrB7R8MVp3uxaulOba7wqo8QSP5xSMeBzKlM0Mc5JxLq4b6zuVjBtd+jLPnFZHt98hMPDGPmZMyACXfUPdG+RN6c7K1qkz6OB3vTSBkft5P2np12IEr1A="
 jobs:
   include:
     - stage: test
@@ -14,12 +17,11 @@ jobs:
         provider: releases
         skip_cleanup: true
         name: "pax $TRAVIS_TAG"
+        edge: true
         file:
           - bin/darwin/pax-darwin-amd64
           - bin/linux/pax-linux-amd64
           - bin/windows/pax-windows-amd64.exe
-        api_key:
-          secure: "GvKzFEz6UyQzjHwtnRbzURsckrxXnkIK1uT+pZxcIBs7nQy6WNIVM2Om86LQ8G5FbETuM7GOi0NYwpMLZEq5iM9fhZzqeMrbewj4YtvjxPRGu7XXbMyJX6Wk/bwMRfPqclQM/dan1wKwu01VObiTU282xy9Eb5wsVEmMRrWBUO/ur+NkEM9DQqAgMcW3f8KrclS0Ikx21b1fxFMZnyli+Aeq01e94qXB6G7DbRQhrbb8KrYcry8SA0n0IceFCcBNfcdrHjWmfFHI54MmDBjBpMAvIzS6Tx6ypr6MtjspcrMqCFUTL52nE53jmase+amOmYcTxPA6cqSgq43NCy9E0NSRovExrx6m6XOCNnZYXkiyCsFrgc+x51pe1beiJQ9djRX/j32ACrbaBbnMz5W21YHVGAOIrmm6w+O9DOAecDOEU68lgXTvQzLX8JgeRgwKVwpY1U1Ua4WEm7neLTgbjWdFOQ5Gh9JRpW0FSuXKA/slNAjy0oflYyJ1vdKVPrMZR1qF2RijaxRyatKfEljwobDyx0fSduZQSJCDUln2fm1Qb0HOgKmKCVim3RjgA2qmQrYAdHtjBpIWlvV0NckBakqOiChF70rFqge3aXImoWFVl9lWZsDsKxDd0RpvltXLo1Q4KXfY+j1j6SKHa18HTmPNDg6TWUZcpcYP0YOiNTw="
         on:
           repo: liamg/pax
           tags: true
