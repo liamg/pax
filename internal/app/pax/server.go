@@ -2,6 +2,7 @@ package pax
 
 import (
 	"encoding/base64"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -29,13 +30,16 @@ func startVulnerableServer(key []byte) *httptest.Server {
 
 		encrypted, err := base64.StdEncoding.DecodeString(strings.ReplaceAll(input, " ", "+"))
 		if err != nil {
+			fmt.Printf("Decoding of input (%s) failed: %s\n", input, err)
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 
-		if _, err := decrypt(encrypted, key); err != nil {
+		data, err := decrypt(encrypted, key)
+		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 		}
 
+		_, _ = w.Write(data)
 	}))
 }
