@@ -10,13 +10,24 @@ import (
 func startVulnerableServer(key []byte) *httptest.Server {
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
+		var input string
+
 		keys, ok := r.URL.Query()["enc"]
 		if !ok || len(keys) != 1 {
-			w.WriteHeader(http.StatusBadRequest)
-			return
+
+			encCookie, err := r.Cookie("ENC")
+			if err != nil || encCookie == nil {
+				w.WriteHeader(http.StatusBadRequest)
+				return
+			}
+
+			input = encCookie.Value
+
+		} else {
+			input = keys[0]
 		}
 
-		encrypted, err := base64.StdEncoding.DecodeString(strings.ReplaceAll(keys[0], " ", "+"))
+		encrypted, err := base64.StdEncoding.DecodeString(strings.ReplaceAll(input, " ", "+"))
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
