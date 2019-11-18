@@ -10,7 +10,7 @@ Pax (PAdding oracle eXploiter) is a tool for exploiting padding oracles in order
 1. Obtain plaintext for a given piece of CBC encrypted data.
 2. Obtain encrypted bytes for a given piece of plaintext, using the unknown encryption algorithm used by the oracle.
 
-This can be used to disclose encrypted session information, and often to bypass authentication, by encrypting custom plaintext and writing it back to the server. 
+This can be used to disclose encrypted session information, and often to bypass authentication, elevate privileges and to execute code remotely by encrypting custom plaintext and writing it back to the server. 
 
 As always, this tool should only be used on systems you own and/or have permission to probe!
 
