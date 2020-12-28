@@ -18,6 +18,8 @@ var cookies string
 var blockSize int = 16
 var method string = http.MethodGet
 var plaintext string
+var failureText string
+var encoding string = string(pax.EncodingAuto)
 
 func init() {
 	rootCmd.AddCommand(decryptCmd)
@@ -28,6 +30,8 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&cookies, "cookies", "c", cookies, "A string containing cookies. e.g. \"PHPSESSID=123456536;LOC=1;X=NO\".")
 	rootCmd.PersistentFlags().IntVarP(&blockSize, "block-size", "b", blockSize, "The block size used by the padding oracle. Usually 8, 16, or 32.")
 	rootCmd.PersistentFlags().StringVarP(&method, "method", "m", method, "The HTTP verb to use when sending requests to the oracle.")
+	rootCmd.PersistentFlags().StringVarP(&encoding, "encoding", "e", encoding, "The encoding used for the encrypted data: one of auto, base64, base64-url, url, none.")
+	rootCmd.PersistentFlags().StringVarP(&failureText, "failure-text", "f", failureText, "Text which is output by the oracle when a padding error occurs. If this is omitted, HTTP status codes will be used.")
 }
 
 func main() {
@@ -57,9 +61,11 @@ var decryptCmd = &cobra.Command{
 		}
 
 		options := pax.ExploitOptions{
-			BlockSize: blockSize,
-			Method:    method,
-			Cookies:   cookies,
+			BlockSize:   blockSize,
+			Method:      method,
+			Cookies:     cookies,
+			Encoding:    pax.Encoding(encoding),
+			FailureText: failureText,
 		}
 
 		output, err := pax.Decrypt(url, sample, &options)
@@ -98,10 +104,12 @@ var encryptCmd = &cobra.Command{
 		}
 
 		options := pax.ExploitOptions{
-			BlockSize: blockSize,
-			Method:    method,
-			Cookies:   cookies,
-			PlainText: plaintext,
+			BlockSize:   blockSize,
+			Method:      method,
+			Cookies:     cookies,
+			PlainText:   plaintext,
+			Encoding:    pax.Encoding(encoding),
+			FailureText: failureText,
 		}
 
 		output, err := pax.Encrypt(url, sample, &options)
